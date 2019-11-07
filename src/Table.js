@@ -1,52 +1,44 @@
 import React, {Component} from 'react'
 
-const TableHeader = () => {
+const TableHead = ()=> {
   return (
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Job</th>
+        <td>Sub</td>
+        <td>Pro</td>
       </tr>
     </thead>
   )
 }
 
-const TableBody = () => {
-  return (
-    <tbody>
-      <tr>
-        <td>Charlie</td>
-        <td>Janitor</td>
+const TableBody = props => {
+  const rows = props.dataTableBody.map((row, index) => {
+    return (
+      <tr key={index}>
+        <td>{row.number1}</td>
+        <td>{row.number2}</td>
+        <td>{row.total}</td>
+        <td>
+          <button onClick={() => props.removeData(index)}>Delete</button>
+        </td>
       </tr>
-      <tr>
-        <td>Mac</td>
-        <td>Bouncer</td>
-      </tr>
-      <tr>
-        <td>Dee</td>
-        <td>Aspiring actress</td>
-      </tr>
-      <tr>
-        <td>Dennis</td>
-        <td>Bartender</td>
-      </tr>
-      <tr>
-        <td>Thom</td>
-        <td>Bartender</td>
-      </tr>
-    </tbody>
-  )
+    )
+  })
+  return <tbody>{rows}</tbody>
 }
 
 class Table extends Component {
+
   render() {
+    const {  dataTable, removeData, total } = this.props
+
     return (
       <table className="table">
-        <TableHeader/>
-        <TableBody/>
+        <TableHead/>
+        <TableBody dataTableBody={dataTable} removeData={removeData} total={total}/>
       </table>
     )
   }
 }
 
-export default Table
+export default Table;
