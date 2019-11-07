@@ -8,16 +8,9 @@ class App extends Component {
     state = {
         datas: [
             {
-                name: 'learn react'
-            },
-            {
-                name: 'learn Html'
-            },
-            {
-                name: 'learn CSS'
-            },
-            {
-                name: 'learn JS'
+              number1: 'learn react',
+              number2: 'learn react',
+              total: 1
             },
         ],
     }
@@ -33,17 +26,19 @@ class App extends Component {
     }
 
     submitForm = data => {
-        this.setState({datas: [...this.state.datas, data]})
+        this.setState({datas: [...this.state.datas, data]});
+        console.log(data);
     }
+
   render() {
-    const { datas } = this.state
-    
+    const { datas, total } = this.state
     return (
       <div>
         <div className="App">
             <h2>Todo App</h2>
-            <Table dataTable = {datas} removeData={this.removeData}/>
-            <Form submitForm = {this.submitForm} />
+            <span className="data__new">{total}</span>
+            <Table dataTable={datas} removeData={this.removeData} total={total}/>
+            <Form submitForm={this.submitForm} />
         </div>
       </div>
     )

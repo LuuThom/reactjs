@@ -1,11 +1,23 @@
 import React, {Component} from 'react'
 
+const TableHead = ()=> {
+  return (
+    <thead>
+      <tr>
+        <td>Sub</td>
+        <td>Pro</td>
+      </tr>
+    </thead>
+  )
+}
 
 const TableBody = props => {
-  const rows = props.datas.map((row, index) => {
+  const rows = props.dataTableBody.map((row, index) => {
     return (
       <tr key={index}>
-        <td>{row.name}</td>
+        <td>{row.number1}</td>
+        <td>{row.number2}</td>
+        <td>{row.total}</td>
         <td>
           <button onClick={() => props.removeData(index)}>Delete</button>
         </td>
@@ -16,13 +28,14 @@ const TableBody = props => {
 }
 
 class Table extends Component {
-  
+
   render() {
-    const {  datas, removeData } = this.props
+    const {  dataTable, removeData, total } = this.props
 
     return (
       <table className="table">
-        <TableBody dataTableBody = {datas} removeData={removeData}/>
+        <TableHead/>
+        <TableBody dataTableBody={dataTable} removeData={removeData} total={total}/>
       </table>
     )
   }
